@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:aether="antlib:org.eclipse.aether.ant"
+         xmlns:artifact="antlib:org.apache.maven.artifact.ant"
+         xmlns:ball="antlib:ball.util.ant"
+         xmlns:ivy="antlib:org.apache.ivy.ant"
+         xmlns:spring-boot="antlib:org.springframework.boot.ant"
+         name="ball-hello" basedir="." default="jar">
+
+  <description>
+    ball-hello
+    ------------------------------------------
+    'Hello, World' Application for Spring Boot
+
+    $Id$
+  </description>
+
+  <aether:resolve>
+    <dependencies>
+      <dependency coords="ball:parent:1.0:xml:compile"/>
+    </dependencies>
+    <properties/>
+  </aether:resolve>
+  <import file="${ball:parent:xml}"/>
+
+  <target name="spring-boot:findmainclass"
+          description="--> Invokes &lt;spring-boot:findmainclass/&gt; task."
+          depends="jar-classes">
+    <spring-boot:findmainclass classesroot="${target.classes.dir}"
+                               property="main-class"/>
+    <echo>${main-class}</echo>
+  </target>
+
+</project>

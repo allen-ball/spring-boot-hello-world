@@ -22,7 +22,7 @@ public class Controller {
      */
     public Controller() { }
 
-    @RequestMapping("/")
+    @RequestMapping("/hello")
     public String home() { return "Hello, World!"; }
 
     @Override

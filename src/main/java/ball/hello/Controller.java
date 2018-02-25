@@ -5,6 +5,7 @@
  */
 package ball.hello;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class Controller {
+    @Value("${greeting}")
+    private String greeting;
 
     /**
      * Sole constructor.
@@ -23,7 +26,7 @@ public class Controller {
     public Controller() { }
 
     @RequestMapping("/hello")
-    public String home() { return "Hello, World!"; }
+    public String home() { return greeting; }
 
     @Override
     public String toString() { return super.toString(); }

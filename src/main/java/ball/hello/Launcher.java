@@ -5,17 +5,18 @@
  */
 package ball.hello;
 
+import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * {@link SpringBootApplication}
+ * {@link SpringBootApplication} {@link Launcher}
  *
  * @author {@link.uri mailto:ball@iprotium.com Allen D. Ball}
  * @version $Revision$
  */
 @SpringBootApplication
-public class Application {
+public class Launcher {
 
     /**
      * Standard {@link SpringApplication} {@code main(String[])} entry
@@ -27,13 +28,20 @@ public class Application {
      *                          {@link Exception}.
      */
     public static void main(String[] argv) throws Exception {
-        SpringApplication.run(Application.class, argv);
+        SpringApplication application = new SpringApplication(Launcher.class);
+
+        application.setBanner(null);
+        application.setBannerMode(Banner.Mode.OFF);
+        application.setHeadless(true);
+        application.setLogStartupInfo(false);
+
+        application.run(argv);
     }
 
     /**
      * Sole constructor.
      */
-    public Application() { }
+    public Launcher() { }
 
     @Override
     public String toString() { return super.toString(); }

@@ -5,7 +5,6 @@
  */
 package ball.hello;
 
-import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -29,11 +28,6 @@ public class Launcher {
      */
     public static void main(String[] argv) throws Exception {
         SpringApplication application = new SpringApplication(Launcher.class);
-
-        application.setBanner(null);
-        application.setBannerMode(Banner.Mode.OFF);
-        application.setHeadless(true);
-        application.setLogStartupInfo(false);
 
         application.run(argv);
     }

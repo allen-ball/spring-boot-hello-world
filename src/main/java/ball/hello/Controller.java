@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Spring Boot {@link RestController}
+ * Spring Boot {@link RestController}.  See
+ * {@link.uri https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html#mvc-controller target=newtab Annotated Controllers}.
  *
  * @author {@link.uri mailto:ball@iprotium.com Allen D. Ball}
  * @version $Revision$
@@ -26,7 +27,7 @@ public class Controller {
     public Controller() { }
 
     @RequestMapping("/hello")
-    public String home() { return greeting; }
+    public String handle() { return greeting; }
 
     @Override
     public String toString() { return super.toString(); }

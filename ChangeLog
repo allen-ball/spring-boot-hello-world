@@ -1,3 +1,7 @@
+2018-03-01  Allen D. Ball  <ball@sol.local>
+
+	* Migrated to Spring Boot 2.0.
+
 2018-02-25  Allen D. Ball  <ball@sol.local>
 
 	* Added application.properties to template example.

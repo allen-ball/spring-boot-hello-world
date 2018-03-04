@@ -11,8 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * {@link SpringApplication} {@link Launcher}
  *
- * {@include /application.properties}
- *
  * @author {@link.uri mailto:ball@iprotium.com Allen D. Ball}
  * @version $Revision$
  */

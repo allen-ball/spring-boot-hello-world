@@ -26,7 +26,7 @@ public class Controller {
      */
     public Controller() { }
 
-    @RequestMapping("/hello")
+    @RequestMapping({ "/hello" })
     public String handle() { return greeting; }
 
     @Override

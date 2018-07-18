@@ -1,3 +1,7 @@
+2018-07-18  Allen D. Ball  <ball@sol.local>
+
+	* Added log4j instrumentation.
+
 2018-03-01  Allen D. Ball  <ball@sol.local>
 
 	* Migrated to Spring Boot 2.0.

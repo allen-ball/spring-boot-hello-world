@@ -5,6 +5,9 @@
  */
 package ball.hello;
 
+import java.util.Arrays;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -16,6 +19,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Launcher {
+    private static final Logger LOGGER = LogManager.getLogger();
 
     /**
      * Standard {@link SpringApplication} {@code main(String[])} entry
@@ -28,6 +32,8 @@ public class Launcher {
      */
     public static void main(String[] argv) throws Exception {
         SpringApplication application = new SpringApplication(Launcher.class);
+
+        LOGGER.debug(() -> Arrays.toString(argv));
 
         application.run(argv);
     }

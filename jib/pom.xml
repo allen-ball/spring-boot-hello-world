@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <name>'Hello, World' Spring Boot JIB</name>
+  <groupId>ball</groupId>
+  <artifactId>ball-hello-jib</artifactId>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
+  <parent>
+    <groupId>ball</groupId>
+    <artifactId>parent</artifactId>
+    <version>2.0</version>
+    <relativePath>../ball/parent/pom.xml</relativePath>
+  </parent>
+  <properties>
+    <start-class>ball.hello.Launcher</start-class>
+    <maven.source.skip>true</maven.source.skip>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
+    <maven.site.skip>true</maven.site.skip>
+  </properties>
+  <dependencies verbose="true">
+    <dependency>
+      <groupId>ball</groupId>
+      <artifactId>ball-hello-server</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <configuration>
+          <to>
+            <image>${image.path}</image>
+          </to>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

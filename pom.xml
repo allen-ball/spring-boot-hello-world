@@ -5,28 +5,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <name>'Hello, World' Application for Spring Boot</name>
+  <name>'Hello, World' Applications</name>
   <groupId>ball</groupId>
-  <artifactId>ball-hello</artifactId>
+  <artifactId>ball-hello-parent</artifactId>
   <version>1.0.0</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <parent>
     <groupId>ball</groupId>
     <artifactId>parent</artifactId>
     <version>2.0</version>
     <relativePath>../ball/parent/pom.xml</relativePath>
   </parent>
-  <properties>
-    <jre.version>1.8</jre.version>
-  </properties>
-  <dependencies verbose='true'>
-    <dependency>
-      <groupId>ball</groupId>
-      <artifactId>ball-util</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-  </dependencies>
+  <modules>
+    <module>./jar</module>
+  </modules>
 </project>

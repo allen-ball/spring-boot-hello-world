@@ -1,3 +1,7 @@
+2018-12-21  Allen D. Ball  <ball@sol.local>
+
+	* Converted to multi-module build.
+
 2018-07-31  Allen D. Ball  <ball@sol.local>
 
 	* pom.xml: Released version 1.0.0.

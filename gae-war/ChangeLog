@@ -1,0 +1,9 @@
+2018-11-28    <ball@cs-6000-devshell-vm-5e5cd13c-7662-4f18-aada-139e079d4dcd>
+
+	* pom.xml: Fixed dependencies and build order.
+
+2018-11-26  Allen D. Ball  <ball@sol.local>
+
+	* Initial writing.
+	https://codelabs.developers.google.com/codelabs/cloud-app-engine-springboot/index.html
+

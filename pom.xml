@@ -20,8 +20,8 @@
     <start-class>ball.hello.Launcher</start-class>
   </properties>
   <modules>
-    <module>./jar</module>
     <module>./gae</module>
+    <module>./jar</module>
     <module>./jib</module>
     <module>./server</module>
     <module>./service</module>

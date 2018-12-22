@@ -8,16 +8,14 @@
   <name>'Hello, World' Spring Boot GAE</name>
   <groupId>ball</groupId>
   <artifactId>ball-hello-gae</artifactId>
-  <version>1.0.0</version>
   <packaging>war</packaging>
   <parent>
     <groupId>ball</groupId>
-    <artifactId>parent</artifactId>
-    <version>2.0</version>
-    <relativePath>../ball/parent/pom.xml</relativePath>
+    <artifactId>ball-hello-parent</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
   <properties>
-    <start-class>ball.hello.Launcher</start-class>
     <maven.source.skip>true</maven.source.skip>
     <maven.javadoc.skip>true</maven.javadoc.skip>
     <maven.site.skip>true</maven.site.skip>

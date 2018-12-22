@@ -5,7 +5,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <name>'Hello, World' Applications</name>
+  <name>'Hello, World' Spring Boot Applications</name>
   <groupId>ball</groupId>
   <artifactId>ball-hello-parent</artifactId>
   <version>1.0.0</version>
@@ -16,7 +16,15 @@
     <version>2.0</version>
     <relativePath>../ball/parent/pom.xml</relativePath>
   </parent>
+  <properties>
+    <start-class>ball.hello.Launcher</start-class>
+  </properties>
   <modules>
     <module>./jar</module>
+    <module>./gae</module>
+    <module>./jib</module>
+    <module>./server</module>
+    <module>./service</module>
+    <module>./war</module>
   </modules>
 </project>

@@ -14,11 +14,6 @@
     <version>1.0.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <properties>
-    <maven.source.skip>true</maven.source.skip>
-    <maven.javadoc.skip>true</maven.javadoc.skip>
-    <maven.site.skip>true</maven.site.skip>
-  </properties>
   <dependencies verbose="true">
     <dependency>
       <groupId>ball</groupId>

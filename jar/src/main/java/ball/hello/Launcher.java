@@ -1,11 +1,13 @@
 /*
  * $Id$
  *
- * Copyright 2018 Allen D. Ball.  All rights reserved.
+ * Copyright 2018, 2019 Allen D. Ball.  All rights reserved.
  */
 package ball.hello;
 
 import java.util.Arrays;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
@@ -16,10 +18,11 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 /**
  * {@link SpringApplication} {@link Launcher}
  *
- * @author {@link.uri mailto:ball@iprotium.com Allen D. Ball}
+ * @author {@link.uri mailto:ball@hcf.dev Allen D. Ball}
  * @version $Revision$
  */
 @SpringBootApplication
+@NoArgsConstructor @ToString
 public class Launcher extends SpringBootServletInitializer {
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -40,16 +43,8 @@ public class Launcher extends SpringBootServletInitializer {
         application.run(argv);
     }
 
-    /**
-     * Sole constructor.
-     */
-    public Launcher() { }
-
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Launcher.class);
     }
-
-    @Override
-    public String toString() { return super.toString(); }
 }

@@ -5,6 +5,8 @@
  */
 package ball.hello;
 
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,24 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * {@injected.fields}
  *
- * @author {@link.uri mailto:ball@iprotium.com Allen D. Ball}
+ * @author {@link.uri mailto:ball@hcf.dev Allen D. Ball}
  * @version $Revision$
  */
 @RestController
+@NoArgsConstructor @ToString
 public class Controller {
     private static final Logger LOGGER = LogManager.getLogger();
 
     @Value("${greeting}")
     private String greeting;
 
-    /**
-     * Sole constructor.
-     */
-    public Controller() { }
-
     @RequestMapping({ "/hello" })
     public String handle() { return greeting; }
-
-    @Override
-    public String toString() { return super.toString(); }
 }

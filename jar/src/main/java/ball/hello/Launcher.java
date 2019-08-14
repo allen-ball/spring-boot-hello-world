@@ -8,8 +8,8 @@ package ball.hello;
 import java.util.Arrays;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -22,9 +22,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  * @version $Revision$
  */
 @SpringBootApplication
-@NoArgsConstructor @ToString
+@NoArgsConstructor @ToString @Log4j2
 public class Launcher extends SpringBootServletInitializer {
-    private static final Logger LOGGER = LogManager.getLogger();
 
     /**
      * Standard {@link SpringApplication} {@code main(String[])} entry
@@ -38,7 +37,7 @@ public class Launcher extends SpringBootServletInitializer {
     public static void main(String[] argv) throws Exception {
         SpringApplication application = new SpringApplication(Launcher.class);
 
-        LOGGER.debug(() -> Arrays.toString(argv));
+        log.debug(() -> Arrays.toString(argv));
 
         application.run(argv);
     }

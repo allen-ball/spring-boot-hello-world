@@ -7,8 +7,8 @@ package ball.hello;
 
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +23,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @version $Revision$
  */
 @RestController
-@NoArgsConstructor @ToString
+@NoArgsConstructor @ToString @Log4j2
 public class Controller {
-    private static final Logger LOGGER = LogManager.getLogger();
-
     @Value("${greeting}")
     private String greeting;
 

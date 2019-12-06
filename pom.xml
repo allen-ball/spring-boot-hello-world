@@ -8,12 +8,12 @@
   <name>'Hello, World' Spring Boot Applications</name>
   <groupId>ball</groupId>
   <artifactId>ball-hello-parent</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
   <parent>
     <groupId>ball</groupId>
     <artifactId>parent</artifactId>
-    <version>20191127.0</version>
+    <version>20191206.0</version>
     <relativePath>../ball/parent/pom.xml</relativePath>
   </parent>
   <properties>

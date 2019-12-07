@@ -1,9 +1,4 @@
-/*
- * $Id$
- *
- * Copyright 2018, 2019 Allen D. Ball.  All rights reserved.
- */
-package ball.hello;
+package hello;
 
 import java.util.Arrays;
 import lombok.NoArgsConstructor;

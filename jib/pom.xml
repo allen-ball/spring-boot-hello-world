@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- $Id$ -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <name>'Hello, World' Spring Boot JIB</name>
-  <groupId>ball</groupId>
-  <artifactId>ball-hello-jib</artifactId>
+  <groupId>spring-boot-hello-world</groupId>
+  <artifactId>hello-jib</artifactId>
   <packaging>war</packaging>
   <parent>
-    <groupId>ball</groupId>
-    <artifactId>ball-hello-parent</artifactId>
-    <version>1.0.2</version>
+    <groupId>spring-boot-hello-world</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <dependencies verbose="true">
     <dependency>
-      <groupId>ball</groupId>
-      <artifactId>ball-hello-server</artifactId>
+      <groupId>spring-boot-hello-world</groupId>
+      <artifactId>hello-server</artifactId>
       <version>${project.version}</version>
     </dependency>
   </dependencies>

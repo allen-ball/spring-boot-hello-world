@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- $Id$ -->
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0
+                      http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+  <id>bin</id>
+  <baseDirectory>${artifactId}-${version}</baseDirectory>
+  <files>
+    <file>
+      <outputDirectory>bin</outputDirectory>
+      <source>
+        ${project.build.directory}/${project.build.finalName}.jar
+      </source>
+      <filtered>false</filtered>
+      <destName>${artifactId}.jar</destName>
+    </file>
+  </files>
+  <fileSets>
+    <fileSet>
+      <outputDirectory>bin</outputDirectory>
+      <directory>${project.basedir}/src/bin</directory>
+      <includes>
+        <include>${artifactId}.conf</include>
+      </includes>
+      <filtered>true</filtered>
+    </fileSet>
+  </fileSets>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>lib</outputDirectory>
+      <useProjectArtifact>false</useProjectArtifact>
+      <includes>
+        <include>*:*-x86_64:*</include>
+      </includes>
+      <scope>runtime</scope>
+      <outputFileNameMapping>
+        lib${artifact.artifactId}.${artifact.type}
+      </outputFileNameMapping>
+    </dependencySet>
+  </dependencySets>
+</assembly>

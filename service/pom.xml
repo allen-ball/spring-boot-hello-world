@@ -61,9 +61,7 @@
             <formats>
               <format>tar.gz</format>
             </formats>
-            <descriptorRefs>
-              <descriptorRef>service</descriptorRef>
-            </descriptorRefs>
+            <descriptorSourceDirectory>src/main/assemblies</descriptorSourceDirectory>
           </configuration>
         </plugin>
       </plugins>

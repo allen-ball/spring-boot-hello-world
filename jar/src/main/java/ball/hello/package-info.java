@@ -8,7 +8,4 @@
  *
  * @author {@link.uri mailto:ball@hcf.dev Allen D. Ball}
  */
-@Manifest.Section
 package ball.hello;
-
-import ball.annotation.Manifest;

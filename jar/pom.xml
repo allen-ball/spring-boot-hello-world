@@ -12,12 +12,9 @@
   <parent>
     <groupId>ball</groupId>
     <artifactId>ball-hello-parent</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <properties>
-    <jre.version>1.8</jre.version>
-  </properties>
   <dependencies verbose='true'>
     <dependency>
       <groupId>org.projectlombok</groupId>

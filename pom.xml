@@ -22,12 +22,12 @@
     <start-class>hello.Launcher</start-class>
   </properties>
   <modules>
-    <module>./gae</module>
     <module>./jar</module>
-    <module>./jib</module>
+    <module>./war</module>
     <module>./server</module>
     <module>./service</module>
-    <module>./war</module>
+    <module>./gae</module>
+    <module>./jib</module>
   </modules>
   <build>
     <defaultGoal>clean package</defaultGoal>

@@ -31,7 +31,7 @@ public class Launcher extends SpringBootServletInitializer {
     public static void main(String[] argv) throws Exception {
         SpringApplication application = new SpringApplication(Launcher.class);
 
-        log.debug(() -> Arrays.toString(argv));
+        log.debug("{}", () -> Arrays.toString(argv));
 
         application.run(argv);
     }

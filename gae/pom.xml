@@ -17,7 +17,7 @@
     <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
     <app-engine-maven-plugin.version>2.4.0</app-engine-maven-plugin.version>
     <serviceAccountKeyFile>
-      ${user.home}/.config/gcloud/hcf-dev.json
+      /path/to/service-account-key-file.json
     </serviceAccountKeyFile>
   </properties>
   <dependencyManagement>
@@ -84,7 +84,7 @@
           </dependencies>
           <configuration>
             <keepDependenciesWithProvidedScope>true</keepDependenciesWithProvidedScope>
-            <createDependencyReducedPom>true</createDependencyReducedPom>
+            <createDependencyReducedPom>false</createDependencyReducedPom>
             <filters>
               <filter>
                 <artifact>*:*</artifact>

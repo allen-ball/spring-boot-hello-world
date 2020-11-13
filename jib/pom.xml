@@ -14,6 +14,9 @@
     <version>1.0.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
+  <properties>
+    <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
+  </properties>
   <dependencies verbose="true">
     <dependency>
       <groupId>spring-boot-hello-world</groupId>
@@ -27,7 +30,7 @@
         <plugin>
           <groupId>com.google.cloud.tools</groupId>
           <artifactId>jib-maven-plugin</artifactId>
-          <version>1.8.0</version>
+          <version>${jib-maven-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>

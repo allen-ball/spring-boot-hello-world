@@ -7,59 +7,25 @@
   <name>'Hello, World' Spring Boot GAE</name>
   <groupId>spring-boot-hello-world</groupId>
   <artifactId>hello-gae</artifactId>
-  <packaging>war</packaging>
   <parent>
     <groupId>spring-boot-hello-world</groupId>
     <artifactId>parent</artifactId>
     <version>1.0.0</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
-  <profiles>
-    <profile>
-      <id>com.google.appengine:appengine-maven-plugin</id>
-      <activation>
-        <file><missing>${basedir}/src/main/appengine/app.yaml</missing></file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-maven-plugin</artifactId>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>com.google.cloud.tools:appengine-maven-plugin</id>
-      <activation>
-        <file><exists>${basedir}/src/main/appengine/app.yaml</exists></file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>com.google.cloud.tools</groupId>
-            <artifactId>appengine-maven-plugin</artifactId>
-            <configuration>
-              <projectId>${project.groupId}</projectId>
-              <service>${project.artifactId}</service>
-              <version>${project.version}</version>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+  <properties>
+    <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
+    <app-engine-maven-plugin.version>2.4.0</app-engine-maven-plugin.version>
+    <serviceAccountKeyFile>
+      ${user.home}/.config/gcloud/hcf-dev.json
+    </serviceAccountKeyFile>
+  </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>com.google.api-client</groupId>
-        <artifactId>google-api-client-appengine</artifactId>
-        <version>1.31.0</version>
-      </dependency>
-      <dependency>
         <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-gcp-dependencies</artifactId>
-        <version>1.2.6.RELEASE</version>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -70,15 +36,11 @@
       <groupId>spring-boot-hello-world</groupId>
       <artifactId>hello</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
       <exclusions>
-        <exclusion>
-          <artifactId>commons-logging</artifactId>
-          <groupId>commons-logging</groupId>
-        </exclusion>
-        <exclusion>
-          <groupId>javax.transaction</groupId>
-          <artifactId>javax.transaction-api</artifactId>
-        </exclusion>
         <exclusion>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-tomcat</artifactId>
@@ -86,32 +48,13 @@
       </exclusions>
     </dependency>
     <dependency>
-      <groupId>com.google.api-client</groupId>
-      <artifactId>google-api-client-appengine</artifactId>
-      <scope>runtime</scope>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jetty</artifactId>
     </dependency>
   </dependencies>
   <build>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-war-plugin</artifactId>
-          <configuration>
-            <archive>
-              <manifest>
-                <mainClass>${start-class}</mainClass>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-              </manifest>
-            </archive>
-            <webResources>
-              <resource>
-                <filtering>true</filtering>
-                <directory>src/main/webapp</directory>
-              </resource>
-            </webResources>
-          </configuration>
-        </plugin>
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
@@ -119,23 +62,73 @@
             <execution>
               <goals>
                 <goal>build-info</goal>
-                <goal>repackage</goal>
               </goals>
             </execution>
           </executions>
           <configuration>
             <mainClass>${start-class}</mainClass>
+            <profiles>
+              <profile>gcp</profile>
+            </profiles>
           </configuration>
         </plugin>
         <plugin>
-          <groupId>com.google.appengine</groupId>
-          <artifactId>appengine-maven-plugin</artifactId>
-          <version>${appengine-sdk.version}</version>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <dependencies>
+            <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-maven-plugin</artifactId>
+              <version>${spring-boot.version}</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <keepDependenciesWithProvidedScope>true</keepDependenciesWithProvidedScope>
+            <createDependencyReducedPom>true</createDependencyReducedPom>
+            <filters>
+              <filter>
+                <artifact>*:*</artifact>
+                <excludes>
+                  <exclude>META-INF/*.SF</exclude>
+                  <exclude>META-INF/*.DSA</exclude>
+                  <exclude>META-INF/*.RSA</exclude>
+                  <excludes>**/module-info.class</excludes>
+                </excludes>
+              </filter>
+            </filters>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+              <configuration>
+                <transformers>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                    <resource>META-INF/spring.handlers</resource>
+                  </transformer>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"/>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                  <transformer implementation="org.springframework.boot.maven.PropertiesMergingResourceTransformer">
+                    <resource>META-INF/spring.factories</resource>
+                  </transformer>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                    <resource>META-INF/spring.schemas</resource>
+                  </transformer>
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <mainClass>${start-class}</mainClass>
+                  </transformer>
+                </transformers>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>com.google.cloud.tools</groupId>
           <artifactId>appengine-maven-plugin</artifactId>
-          <version>2.4.0</version>
+          <version>${app-engine-maven-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -143,10 +136,17 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>appengine-maven-plugin</artifactId>
         <configuration>
-          <profiles>
-            <profile>gcp</profile>
-          </profiles>
+          <projectId>GCLOUD_CONFIG</projectId>
+          <version>GCLOUD_CONFIG</version>
         </configuration>
       </plugin>
     </plugins>

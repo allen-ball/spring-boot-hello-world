@@ -16,9 +16,8 @@
   <properties>
     <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
     <app-engine-maven-plugin.version>2.4.0</app-engine-maven-plugin.version>
-    <serviceAccountKeyFile>
-      /path/to/service-account-key-file.json
-    </serviceAccountKeyFile>
+    <app.deploy.projectId>GCLOUD_CONFIG</app.deploy.projectId>
+    <serviceAccountKeyFile>/path/to/service-account-key-file.json</serviceAccountKeyFile>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -116,7 +115,9 @@
                     <resource>META-INF/spring.schemas</resource>
                   </transformer>
                   <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                    <mainClass>${start-class}</mainClass>
+                    <manifestEntries>
+                      <Main-Class>${start-class}</Main-Class>
+                    </manifestEntries>
                   </transformer>
                 </transformers>
               </configuration>
@@ -143,7 +144,6 @@
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>appengine-maven-plugin</artifactId>
         <configuration>
-          <projectId>GCLOUD_CONFIG</projectId>
           <version>GCLOUD_CONFIG</version>
         </configuration>
       </plugin>

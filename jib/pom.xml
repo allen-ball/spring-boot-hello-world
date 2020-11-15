@@ -16,33 +16,97 @@
   </parent>
   <properties>
     <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
+    <!-- gcloud auth configure-docker gcr.io -->
+    <!-- gcloud auth configure-docker us.gcr.io -->
+    <projectId>PROJECT</projectId>
+    <serviceAccountKeyFile>/path/to/service-account-key-file.json</serviceAccountKeyFile>
+    <jib.console>plain</jib.console>
   </properties>
   <dependencies verbose="true">
     <dependency>
       <groupId>spring-boot-hello-world</groupId>
-      <artifactId>hello-server</artifactId>
+      <artifactId>hello</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-jetty</artifactId>
     </dependency>
   </dependencies>
   <build>
     <pluginManagement>
       <plugins>
         <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <executions>
+            <execution>
+              <goals>
+                <goal>build-info</goal>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <mainClass>${start-class}</mainClass>
+          </configuration>
+        </plugin>
+        <plugin>
           <groupId>com.google.cloud.tools</groupId>
           <artifactId>jib-maven-plugin</artifactId>
           <version>${jib-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>build</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <from>
+              <image>gcr.io/distroless/java/jetty:java11</image>
+            </from>
+            <to>
+              <image>us.gcr.io/${projectId}/hello</image>
+            </to>
+            <container>
+              <appRoot>/app</appRoot>
+              <ports>
+                <port>8080</port>
+              </ports>
+              <environment>
+                <SPRING_PROFILES_ACTIVE>gcp</SPRING_PROFILES_ACTIVE>
+              </environment>
+	      <entrypoint>
+	        <entrypoint>java</entrypoint>
+	        <entrypoint>-cp</entrypoint>
+	        <entrypoint>/app:/app/WEB-INF/classes:/app/WEB-INF/lib/*</entrypoint>
+	        <entrypoint>${start-class}</entrypoint>
+              </entrypoint>
+            </container>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
       <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>jib-maven-plugin</artifactId>
-        <configuration>
-          <to>
-            <image>${image.path}</image>
-          </to>
-        </configuration>
       </plugin>
     </plugins>
   </build>

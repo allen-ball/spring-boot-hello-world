@@ -59,6 +59,9 @@
           </executions>
           <configuration>
             <mainClass>${start-class}</mainClass>
+            <profiles>
+              <profile>gcp</profile>
+            </profiles>
           </configuration>
         </plugin>
         <plugin>

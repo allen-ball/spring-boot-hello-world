@@ -7,7 +7,6 @@
   <name>'Hello, World' Spring Boot JIB</name>
   <groupId>spring-boot-hello-world</groupId>
   <artifactId>hello-jib</artifactId>
-  <packaging>war</packaging>
   <parent>
     <groupId>spring-boot-hello-world</groupId>
     <artifactId>parent</artifactId>
@@ -47,24 +46,6 @@
     <pluginManagement>
       <plugins>
         <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-          <executions>
-            <execution>
-              <goals>
-                <goal>build-info</goal>
-                <goal>repackage</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <mainClass>${start-class}</mainClass>
-            <profiles>
-              <profile>gcp</profile>
-            </profiles>
-          </configuration>
-        </plugin>
-        <plugin>
           <groupId>com.google.cloud.tools</groupId>
           <artifactId>jib-maven-plugin</artifactId>
           <version>${jib-maven-plugin.version}</version>
@@ -88,25 +69,26 @@
               <ports>
                 <port>8080</port>
               </ports>
+              <mainClass>${start-class}</mainClass>
               <environment>
                 <SPRING_PROFILES_ACTIVE>gcp</SPRING_PROFILES_ACTIVE>
               </environment>
-	      <entrypoint>
-	        <entrypoint>java</entrypoint>
-	        <entrypoint>-cp</entrypoint>
-	        <entrypoint>/app:/app/WEB-INF/classes:/app/WEB-INF/lib/*</entrypoint>
-	        <entrypoint>${start-class}</entrypoint>
-              </entrypoint>
             </container>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <configuration>
+            <mainClass>${start-class}</mainClass>
+            <profiles>
+              <profile>gcp</profile>
+            </profiles>
           </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
       <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>jib-maven-plugin</artifactId>

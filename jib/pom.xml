@@ -14,7 +14,7 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <properties>
-    <jib-maven-plugin.version>2.6.0</jib-maven-plugin.version>
+    <jib-maven-plugin.version>2.7.0</jib-maven-plugin.version>
     <!-- gcloud auth configure-docker gcr.io -->
     <!-- gcloud auth configure-docker us.gcr.io -->
     <projectId>PROJECT</projectId>

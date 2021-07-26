@@ -14,7 +14,7 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
   <properties>
-    <spring-cloud.version>2020.0.2</spring-cloud.version>
+    <spring-cloud.version>2020.0.3</spring-cloud.version>
     <app-engine-maven-plugin.version>2.4.0</app-engine-maven-plugin.version>
     <app.deploy.projectId>GCLOUD_CONFIG</app.deploy.projectId>
     <serviceAccountKeyFile>/path/to/service-account-key-file.json</serviceAccountKeyFile>
